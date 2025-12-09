@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal de Servicio - Sistema Hotelero</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <h1>🧹 Panel de Personal de Servicio</h1>
+        <a href="index.html">← Volver</a>
+    </nav>
+
+    <div class="container">
+        <div id="alertContainer"></div>
+
+        <div class="tabs">
+            <button class="tab active" onclick="showTab('habitaciones')">Habitaciones</button>
+            <button class="tab" onclick="showTab('consumos')">Consumos</button>
+            <button class="tab" onclick="showTab('servicios')">Servicios</button>
+        </div>
+
+        <!-- Tab Habitaciones -->
+        <div id="habitaciones" class="tab-content active">
+            <h2>Gestión de Habitaciones</h2>
+
+            <div class="card">
+                <h3>Actualizar Estado de Habitación</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Número de Habitación</label>
+                        <input type="number" id="numHabEstado">
+                    </div>
+                    <div class="form-group">
+                        <label>Nuevo Estado</label>
+                        <select id="nuevoEstado">
+                            <option value="Disponible">Disponible</option>
+                            <option value="No disponible">No disponible</option>
+                        </select>
+                    </div>
+                </div>
+                <button class="btn" onclick="actualizarEstado()">Actualizar</button>
+            </div>
+
+            <div class="card">
+                <h3>Habitaciones Asignadas (Ocupadas)</h3>
+                <button class="btn btn-secondary" onclick="cargarHabitacionesAsignadas()">Actualizar Lista</button>
+                <div id="listaHabitacionesAsignadas"></div>
+            </div>
+
+            <div class="card">
+                <h3>Consultar Habitación</h3>
+                <div class="form-group">
+                    <input type="number" id="consultarHab" placeholder="Número de habitación">
+                </div>
+                <button class="btn" onclick="consultarHabitacion()">Consultar</button>
+                <div id="resultadoHabitacion"></div>
+            </div>
+        </div>
+
+        <!-- Tab Consumos -->
+        <div id="consumos" class="tab-content">
+            <h2>Registro de Consumos</h2>
+
+            <div class="card">
+                <h3>Registrar Nuevo Consumo</h3>
+                <form id="formConsumo">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Cédula Cliente *</label>
+                            <input type="text" id="cedulaConsumo" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Número Habitación *</label>
+                            <input type="number" id="habConsumo" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Fecha Llegada Reserva *</label>
+                            <input type="date" id="fechaLlegadaConsumo" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Servicio *</label>
+                            <select id="servicioConsumo" required></select>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn">Registrar Consumo</button>
+                </form>
+            </div>
+
+            <div class="card">
+                <h3>Consultar Consumos de Reserva</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <input type="text" id="cedulaConsultaConsumo" placeholder="Cédula">
+                    </div>
+                    <div class="form-group">
+                        <input type="number" id="habConsultaConsumo" placeholder="Habitación">
+                    </div>
+                    <div class="form-group">
+                        <input type="date" id="fechaConsultaConsumo">
+                    </div>
+                </div>
+                <button class="btn" onclick="consultarConsumos()">Consultar</button>
+                <button class="btn btn-secondary" onclick="calcularTotal()">Ver Total</button>
+                <div id="resultadoConsumos"></div>
+            </div>
+        </div>
+
+        <!-- Tab Servicios -->
+        <div id="servicios" class="tab-content">
+            <h2>Servicios Disponibles</h2>
+
+            <div class="card">
+                <button class="btn" onclick="cargarServicios()">Cargar Servicios</button>
+                <div id="listaServicios"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="servicio.js"></script>
+</body>
+</html>

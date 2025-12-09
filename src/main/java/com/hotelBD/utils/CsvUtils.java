@@ -25,7 +25,11 @@ public class CsvUtils {
             reader.readLine();
 
             while ((line = reader.readLine()) != null) {
-                rows.add(line.split(","));
+
+                // Preserva campos vacíos
+                String[] cols = line.split(",", -1);
+
+                rows.add(cols);
             }
 
             return rows;

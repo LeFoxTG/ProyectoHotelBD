@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administración - Sistema Hotelero</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <h1>👔 Panel de Administración</h1>
+        <a href="index.html">← Volver</a>
+    </nav>
+
+    <div class="container">
+        <div id="alertContainer"></div>
+
+        <div class="tabs">
+            <button class="tab active" onclick="showTab('empleados')">Empleados</button>
+            <button class="tab" onclick="showTab('areas')">Áreas</button>
+            <button class="tab" onclick="showTab('servicios')">Servicios</button>
+            <button class="tab" onclick="showTab('reportes')">Reportes</button>
+        </div>
+
+        <!-- Tab Empleados -->
+        <div id="empleados" class="tab-content active">
+            <h2>Gestión de Empleados</h2>
+
+            <div class="card">
+                <h3>Registrar Nuevo Empleado</h3>
+                <form id="formEmpleado">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Cédula *</label>
+                            <input type="text" id="cedulaEmp" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Primer Nombre *</label>
+                            <input type="text" id="primerNomEmp" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Primer Apellido *</label>
+                            <input type="text" id="primerApellEmp" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Cargo *</label>
+                            <input type="text" id="cargoEmp" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Área *</label>
+                            <select id="areaEmp" required></select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Calle *</label>
+                            <input type="text" id="calleEmp" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Carrera *</label>
+                            <input type="text" id="carreraEmp" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Número *</label>
+                            <input type="text" id="numeroEmp" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Teléfonos (separados por coma)</label>
+                        <input type="text" id="telefonosEmp" placeholder="3001234567, 3109876543">
+                    </div>
+                    <button type="submit" class="btn">Registrar Empleado</button>
+                </form>
+            </div>
+
+            <div class="card">
+                <h3>Lista de Empleados</h3>
+                <button class="btn" onclick="cargarEmpleados()">Actualizar</button>
+                <div id="listaEmpleados"></div>
+            </div>
+        </div>
+
+        <!-- Tab Áreas -->
+        <div id="areas" class="tab-content">
+            <h2>Gestión de Áreas</h2>
+
+            <div class="card">
+                <h3>Crear Nueva Área</h3>
+                <form id="formArea">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>ID Área *</label>
+                            <input type="number" id="idArea" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Nombre del Área *</label>
+                            <input type="text" id="nombreArea" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn">Crear Área</button>
+                </form>
+            </div>
+
+            <div class="card">
+                <h3>Lista de Áreas</h3>
+                <button class="btn" onclick="cargarAreas()">Actualizar</button>
+                <div id="listaAreas"></div>
+            </div>
+        </div>
+
+        <!-- Tab Servicios -->
+        <div id="servicios" class="tab-content">
+            <h2>Gestión de Servicios</h2>
+
+            <div class="card">
+                <h3>Crear Nuevo Servicio</h3>
+                <form id="formServicio">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>ID Servicio *</label>
+                            <input type="number" id="idServicio" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Nombre *</label>
+                            <input type="text" id="nombreServicio" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Descripción/Contenido *</label>
+                        <input type="text" id="contenidoServicio" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Costo *</label>
+                        <input type="number" step="0.01" id="costoServicio" required>
+                    </div>
+                    <button type="submit" class="btn">Crear Servicio</button>
+                </form>
+            </div>
+
+            <div class="card">
+                <h3>Lista de Servicios</h3>
+                <button class="btn" onclick="cargarServiciosAdmin()">Actualizar</button>
+                <div id="listaServiciosAdmin"></div>
+            </div>
+        </div>
+
+        <!-- Tab Reportes -->
+        <div id="reportes" class="tab-content">
+            <h2>Reportes y Análisis</h2>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3 id="totalClientes">0</h3>
+                    <p>Total Clientes</p>
+                </div>
+                <div class="stat-card">
+                    <h3 id="totalReservas">0</h3>
+                    <p>Total Reservas</p>
+                </div>
+                <div class="stat-card">
+                    <h3 id="totalEmpleados">0</h3>
+                    <p>Total Empleados</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Servicios Más Consumidos</h3>
+                <button class="btn" onclick="cargarServiciosPopulares()">Generar Reporte</button>
+                <div id="reporteServicios"></div>
+            </div>
+
+            <div class="card">
+                <h3>Todas las Reservas</h3>
+                <button class="btn" onclick="cargarTodasReservas()">Ver Todas</button>
+                <div id="reporteReservas"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>

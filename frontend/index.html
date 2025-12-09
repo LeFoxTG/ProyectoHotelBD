@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Gestión Hotelera</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .roles-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .role-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .role-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+
+        .role-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .role-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .role-card h2 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+
+        .role-card p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .role-card ul {
+            list-style: none;
+            text-align: left;
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        .role-card ul li {
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .role-card ul li:last-child {
+            border-bottom: none;
+        }
+
+        .role-card ul li::before {
+            content: "✓ ";
+            color: #667eea;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            margin-top: 20px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .roles-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏨 Sistema de Gestión Hotelera</h1>
+            <p>Seleccione su rol para acceder al sistema</p>
+        </div>
+
+        <div class="roles-container">
+            <!-- Recepción -->
+            <div class="role-card" onclick="window.location.href='recepcion.html'">
+                <div class="role-icon">🎯</div>
+                <h2>Recepción</h2>
+                <p>Gestión de clientes y reservas</p>
+                <ul>
+                    <li>Registrar clientes</li>
+                    <li>Crear reservas</li>
+                    <li>Consultar disponibilidad</li>
+                    <li>Gestionar check-in/out</li>
+                </ul>
+                <button class="btn">Acceder</button>
+            </div>
+
+            <!-- Personal de Servicio -->
+            <div class="role-card" onclick="window.location.href='servicio.html'">
+                <div class="role-icon">🧹</div>
+                <h2>Personal de Servicio</h2>
+                <p>Control de habitaciones y consumos</p>
+                <ul>
+                    <li>Actualizar estado de habitaciones</li>
+                    <li>Registrar consumos</li>
+                    <li>Ver habitaciones asignadas</li>
+                    <li>Consultar servicios</li>
+                </ul>
+                <button class="btn">Acceder</button>
+            </div>
+
+            <!-- Administración -->
+            <div class="role-card" onclick="window.location.href='admin.html'">
+                <div class="role-icon">👔</div>
+                <h2>Administración</h2>
+                <p>Gestión completa del sistema</p>
+                <ul>
+                    <li>Administrar empleados</li>
+                    <li>Gestionar servicios</li>
+                    <li>Ver reportes</li>
+                    <li>Análisis de datos</li>
+                </ul>
+                <button class="btn">Acceder</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

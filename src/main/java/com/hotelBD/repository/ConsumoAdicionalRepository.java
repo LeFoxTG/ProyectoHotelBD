@@ -1,31 +1,35 @@
 package com.hotelBD.repository;
 
 import com.hotelBD.model.ConsumoAdicional;
+import com.hotelBD.model.ConsumoAdicionalId;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 @Repository
-public interface ConsumoAdicionalRepository extends JpaRepository<ConsumoAdicional, Integer> {
+public interface ConsumoAdicionalRepository extends JpaRepository<ConsumoAdicional, ConsumoAdicionalId> {
 
-    // Buscar consumos por id de reservación
-    List<ConsumoAdicional> findByIdReservacion(Integer idReservacion);
+    // Buscar consumos por fecha de consumo
+    List<ConsumoAdicional> findByFechaConsumo(LocalDate fechaConsumo);
 
-    // Buscar consumos por servicio
-    List<ConsumoAdicional> findByIdServ(Integer idServ);
+    // Buscar consumos dentro de un rango de fechas
+    List<ConsumoAdicional> findByFechaConsumoBetween(LocalDate inicio, LocalDate fin);
 
-    // Obtener consumos con información del servicio asociado
-    @Query("SELECT c FROM ConsumoAdicional c JOIN FETCH c.servicio WHERE c.idReservacion = :idRes")
-    List<ConsumoAdicional> findConsumosConServicio(@Param("idRes") Integer idReservacion);
+    // Buscar consumos por número de habitación
+    List<ConsumoAdicional> findByNumeroHab(Integer numeroHab);
 
-    // Total gastado por reservación
-    @Query("SELECT SUM(c.precioTotal) FROM ConsumoAdicional c WHERE c.idReservacion = :idReservacion")
-    Double calcularTotalPorReservacion(@Param("idReservacion") Integer idReservacion);
+    // Buscar consumos por cliente
+    List<ConsumoAdicional> findByCedulaPer(String cedulaPer);
 
-    // Contar consumos de un servicio
-    @Query("SELECT COUNT(c) FROM ConsumoAdicional c WHERE c.idServ = :idServ")
-    Long countByServicio(@Param("idServ") Integer idServ);
+    // Buscar consumos por servicio específico
+    List<ConsumoAdicional> findByIdServicio(Integer idServicio);
+
+    // Buscar consumos por fecha + habitación
+    List<ConsumoAdicional> findByFechaConsumoAndNumeroHab(LocalDate fechaConsumo, Integer numeroHab);
+
+    // Buscar consumos exactos
+    List<ConsumoAdicional> findByFechaConsumoAndHoraConsumo(LocalDate fechaConsumo, LocalTime horaConsumo);
 }

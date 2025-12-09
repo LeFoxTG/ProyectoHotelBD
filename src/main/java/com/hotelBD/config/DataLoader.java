@@ -4,7 +4,6 @@ import com.hotelBD.model.*;
 import com.hotelBD.repository.*;
 import com.hotelBD.utils.CsvUtils;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import java.util.List;
