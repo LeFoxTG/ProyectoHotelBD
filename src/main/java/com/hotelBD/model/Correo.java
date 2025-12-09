@@ -6,7 +6,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "correo")
 @IdClass(CorreoId.class)
-class Correo implements Serializable {
+public class Correo implements Serializable {
     
     @Id
     @Column(name = "cedulaper")

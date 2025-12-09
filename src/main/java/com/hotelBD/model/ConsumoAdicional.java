@@ -8,7 +8,7 @@ import java.time.LocalTime;
 @Entity
 @Table(name = "consumoadicional")
 @IdClass(ConsumoAdicionalId.class)
-class ConsumoAdicional implements Serializable {
+public class ConsumoAdicional implements Serializable {
     
     @Id
     @Column(name = "fechaconsumo")

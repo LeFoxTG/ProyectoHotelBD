@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "area")
-class Area implements Serializable {
+public class Area implements Serializable {
     
     @Id
     @Column(name = "idarea")

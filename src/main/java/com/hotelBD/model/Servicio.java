@@ -2,13 +2,10 @@ package com.hotelBD.model;
 
 import jakarta.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.time.LocalTime;
 
-// ==================== SERVICIO ====================
 @Entity
 @Table(name = "servicio")
-class Servicio implements Serializable {
+public class Servicio implements Serializable {
     
     @Id
     @Column(name = "idservicio")
